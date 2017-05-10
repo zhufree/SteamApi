@@ -18,11 +18,11 @@ def get_news():
 
 @steamapp.route('/get_some_news/')
 def get_more_news():
-	args_c = request.args.get('count')
-	args_d = request.args.get('enddate')
-	count =  args_c if args_c else '10'
-	enddate =  args_d if args_d else '0'
-	return jsonify(sn.get_some_news(count, enddate))
+    args_c = request.args.get('count')
+    args_d = request.args.get('enddate')
+    count =  args_c if args_c else '10'
+    enddate =  args_d if args_d else '0'
+    return jsonify(sn.get_some_news(count, enddate))
 
 @steamapp.route('/get_userinfo/')
 def get_user_info():
