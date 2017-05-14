@@ -13,7 +13,7 @@ def hello_world():
 
 @steamapp.route('/get_all_sales/')
 def get_all_sales():
-    return jsonify(ss.get_all_sales(100))
+    return jsonify(ss.get_all_sales())
 
 @steamapp.route('/get_some_sales/')
 def get_some_sales():
