@@ -30,9 +30,14 @@ class SteamSales(object):
             s_info = {}
             s_info['discount'] = info_tds[3].string
             s_info['price'] = info_tds[4].string
-            s_info['end_in'] = info_tds[5]['title']
+            end_in = info_tds[5]  # 不一定有截止日期
+            if end_in['data-sort'] == '0':
+                s_info['end_in'] = '-'
+            else:
+                s_info['end_in'] = info_tds[5]['title']
             s_info['start_at'] = info_tds[7]['title']
-            s_info['rating'] = s.find('span', 'tooltipped').string
+
+            s_info['rating'] = info_tds[6]['data-sort'] + '%'
 
             item_info = s.find('i', 'subinfo').get_text()
             if ', ' in item_info:
@@ -65,4 +70,4 @@ class SteamSales(object):
 
 if __name__ == '__main__':
     ss = SteamSales()
-    ss.get_sales_by_price(50)
+    ss.get_all_sales(None)

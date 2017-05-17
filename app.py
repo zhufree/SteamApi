@@ -2,10 +2,12 @@ from flask import Flask, request
 from flask import jsonify
 from core.news import SteamNews
 from core.sales import SteamSales
+from core.items import SteamItem
 
 steamapp = Flask(__name__)
 sn = SteamNews()
 ss = SteamSales()
+si = SteamItem()
 
 @steamapp.route('/')
 def hello_world():
@@ -47,7 +49,11 @@ def get_user_info():
 
 @steamapp.route('/get_appinfo/')
 def get_app_info():
-    pass
+    args_id = request.args.get('appid')
+    if args_id:
+        return jsonify(si.get_app_info(args_id))
+    else:
+        return 'Please Pass An Id Of The Game.'
 
 @steamapp.route('/get_applist/')
 def get_app_list():

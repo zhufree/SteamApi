@@ -15,9 +15,13 @@ https://steamdb.info
 ## 折扣（sales）
 > 数据来自steamdb
 
-- `/get_all_sales/`：`GET`方法，获取当日全部打折信息，数据较多（几百条），响应速度会比较慢；
+- `/get_all_sales/`：`GET`方法，获取当日全部打折信息，数据较多（几百条）；
 - `/get_some_sales/`：`GET`方法，参数有两个：`count`为数目，默认为全部，`orderby`为按照什么排序，可选值有`discount`折扣度从高到底，`rating`游戏的好评率从高到底，`price`打折后的价格从低到高。
 
+## 游戏信息（items）
+包括collection，目前还未更新
+
+- `/get_appinfo/`：`GET`方法，参数为appid，可以在别的方法里获取，返回游戏的简要信息，包括名称，类型，开发商发型商，好评率等，之后完善。
 
 测试地址:
 http://api.zhufree.info/
