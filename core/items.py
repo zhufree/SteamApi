@@ -33,7 +33,8 @@ class SteamItem(object):
         # print app_info
         return app_info
 
-
+    # def get_sub_info(self, subid):
+        # sub_page = BS(get('https://steamdb.info/sub/%s/' % subid, headers=self._headers).text, 'html.parser')
 if __name__ == '__main__':
     si = SteamItem()
     si.get_app_info('570')

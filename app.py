@@ -3,11 +3,13 @@ from flask import jsonify
 from core.news import SteamNews
 from core.sales import SteamSales
 from core.items import SteamItem
+from core.player import SteamPlayer
 
 steamapp = Flask(__name__)
 sn = SteamNews()
 ss = SteamSales()
 si = SteamItem()
+sp = SteamPlayer()
 
 @steamapp.route('/')
 def hello_world():
@@ -43,9 +45,15 @@ def get_some_news():
     enddate =  args_d if args_d else '0'
     return jsonify(sn.get_some_news(count, enddate))
 
-@steamapp.route('/get_userinfo/')
+@steamapp.route('/get_user_info/')
 def get_user_info():
-    pass
+    args_u = request.args.get('player')
+    return jsonify(sp.get_basic_info(args_u))
+
+@steamapp.route('/get_user_game/')
+def get_user_game():
+    args_u = request.args.get('player')
+    return jsonify(sp.get_games_info(args_u))
 
 @steamapp.route('/get_appinfo/')
 def get_app_info():
